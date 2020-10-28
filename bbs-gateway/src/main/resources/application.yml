@@ -1,0 +1,83 @@
+server:
+  port: 8201
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true # 使用小写service-id
+      routes: # 配置路由路径
+        - id: bbs-auth
+          uri: lb://bbs-auth
+          predicates:
+            - Path=/bbs-auth/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-admin
+          uri: lb://bbs-admin
+          predicates:
+            - Path=/bbs-admin/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-user
+          uri: lb://bbs-user
+          predicates:
+            - Path=/bbs-user/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-search
+          uri: lb://bbs-search
+          predicates:
+            - Path=/bbs-search/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-article
+          uri: lb://bbs-article
+          predicates:
+            - Path=/bbs-article/**
+          filters:
+            - StripPrefix=1
+  security: # 安全配置
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: 'http://localhost:8201/bbs-auth/rsa/publicKey' #配置RSA的公钥访问地址
+  redis: # 配置Redis
+    database: 0
+    port: 6379
+    host: 10.7.128.120
+    password:
+secure:
+  ignore:
+    urls: #配置白名单路径
+      - "/doc.html"
+      - "/swagger-resources/**"
+      - "/swagger/**"
+      - "/**/v2/api-docs"
+      - "/**/*.js"
+      - "/**/*.css"
+      - "/**/*.png"
+      - "/**/*.ico"
+      - "/webjars/springfox-swagger-ui/**"
+      - "/actuator/**"
+      - "/bbs-auth/oauth/token"
+      - "/bbs-auth/rsa/publicKey"
+      - "/bbs-search/**"
+      - "/bbs-user/sso/login"
+      - "/bbs-user/sso/register"
+      - "/bbs-user/sso/getAuthCode"
+      - "/bbs-user/home/**"
+      - "/bbs-user/product/**"
+      - "/bbs-user/brand/**"
+      - "/bbs-admin/admin/login"
+      - "/bbs-admin/admin/register"
+      - "/bbs-admin/minio/upload"
+management: # 开启SpringBoot Admin的监控
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
