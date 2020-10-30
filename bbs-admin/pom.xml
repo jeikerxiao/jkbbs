@@ -8,7 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.jeiker</groupId>
     <artifactId>bbs-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bbs-admin</name>

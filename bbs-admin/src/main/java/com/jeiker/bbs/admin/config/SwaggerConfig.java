@@ -17,7 +17,7 @@ public class SwaggerConfig extends BaseSwaggerConfig {
     @Override
     public SwaggerProperties swaggerProperties() {
         return SwaggerProperties.builder()
-                .apiBasePackage("com.jeiker.bbs.*.controller")
+                .apiBasePackage("com.jeiker.bbs.admin.controller")
                 .title("bbs 后台系统")
                 .description("bbs 后台相关接口文档")
                 .contactName("jeiker")

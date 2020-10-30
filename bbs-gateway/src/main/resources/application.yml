@@ -1,5 +1,5 @@
 server:
-  port: 8201
+  port: 8070
 spring:
   cloud:
     gateway:
@@ -18,6 +18,24 @@ spring:
           uri: lb://bbs-admin
           predicates:
             - Path=/bbs-admin/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-bff-web
+          uri: lb://bbs-bff-web
+          predicates:
+            - Path=/bbs-bff-web/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-bff-wechat
+          uri: lb://bbs-bff-wechat
+          predicates:
+            - Path=/bbs-bff-wechat/**
+          filters:
+            - StripPrefix=1
+        - id: bbs-bff-admin
+          uri: lb://bbs-bff-admin
+          predicates:
+            - Path=/bbs-bff-admin/**
           filters:
             - StripPrefix=1
         - id: bbs-user

@@ -1,8 +1,8 @@
 server:
-  port: 8084
+  port: 8092
 spring:
   datasource:
-    url: jdbc:mysql://10.7.128.120:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://10.7.128.120:3306/bbs_article?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     druid:

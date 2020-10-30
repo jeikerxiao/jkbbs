@@ -8,7 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.jeiker</groupId>
     <artifactId>bbs-auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bbs-auth</name>
